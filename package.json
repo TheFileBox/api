@@ -1,0 +1,34 @@
+{
+  "name": "filebox-api",
+  "version": "1.0.0",
+  "description": "API",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "micro",
+    "dev": "micro-dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheFileBox/api.git"
+  },
+  "author": "datagutt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheFileBox/api/issues"
+  },
+  "homepage": "https://github.com/TheFileBox/api#readme",
+  "devDependencies": {
+    "micro-dev": "^2.1.1"
+  },
+  "dependencies": {
+    "file-type": "^7.4.0",
+    "knex": "^0.14.2",
+    "micro": "^9.0.2",
+    "micro-cors": "^0.0.4",
+    "micro-hoofs": "^0.0.5",
+    "micro-upload": "https://github.com/TheFileBox/micro-upload.git",
+    "microrouter": "^3.0.0",
+    "mysql2": "^1.5.1",
+    "nconf": "^0.10.0"
+  }
+}
