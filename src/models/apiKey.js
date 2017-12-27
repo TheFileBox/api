@@ -1,6 +1,19 @@
 const dbInstance = global.dbInstance;
 module.exports = {
-	isValidApiKey: (apiKey) => {
-		return true;
+	getAPIKey: (apiKey) => {
+		return new Promise((resolve, reject) => {
+			dbInstance('api_keys').where({
+				api_key: apiKey
+			})
+			.debug(true)
+			.select('*')
+			.first()
+			.then((result) => {
+				resolve(result);
+			})
+			.catch(() => {});
+		});
+
+		return 
 	}
 }

@@ -10,7 +10,7 @@ const crypto = require('crypto');
 const verifyApiKey = require('../../services/verifyApiKey');
 
 const UPLOAD_PATH = global.nconf.get('server:upload_path');
-const SERVER_DOMAIN = global.nconf.get('server.domain');
+const SERVER_DOMAIN = global.nconf.get('server:domain');
 const USERNAME_REGEX = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i;
 
 const validMimes = [
@@ -48,7 +48,6 @@ var getFileInfo = async (data) => {
 };
 
 module.exports = compose(
-	verifyApiKey,
 	parseJSONInput
 )(
 	upload(
@@ -57,7 +56,7 @@ module.exports = compose(
 				fileSize: 50 * 1024 * 1024
 			}
 		},
-		async (req, res) => {
+		verifyApiKey(async (req, res) => {
 			if(!UPLOAD_PATH){
 				return send(res, 500, {
 					statusCode: 500,
@@ -107,14 +106,16 @@ module.exports = compose(
 				}
 				if(!fs.existsSync(`${finalPath}/${hashedFileName}`)){
 					await move(file, `${finalPath}/${hashedFileName}`);
+					output.statusCode = 200;
 					output.statusMessage = 'upload success';
 				}else{
+					output.statusCode = 200;
 					output.statusMessage = 'file already uploaded';
 				}
 				output.shortlink = `https://${username}.${SERVER_DOMAIN}/${hashedFileName}`;
 			}
 			
 			send(res, output.statusCode, output);
-		}
+		})
 	)
 );

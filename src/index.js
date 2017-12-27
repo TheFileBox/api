@@ -8,7 +8,7 @@ nconf.set('base_dir', __dirname);
 nconf.defaults({
 	server: {
 		name: 'FileBox',
-		domain: '.updog.no',
+		domain: 'updog.no',
 		upload_path: '/tmp/uploads',
 		register_type: 0
 	},
@@ -22,7 +22,7 @@ nconf.defaults({
 		}
 	}
 });
-nconf.save();
+//nconf.save();
 
 global.nconf = nconf;
 global.dbInstance = initDb();
