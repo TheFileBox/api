@@ -11,9 +11,7 @@ module.exports = {
 			.then((result) => {
 				resolve(result);
 			})
-			.catch(() => {});
+			.catch((e) => {reject(e);});
 		});
-
-		return 
 	}
 }
