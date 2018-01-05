@@ -18,9 +18,11 @@ module.exports = fn => async (req, res) => {
 
 	const result = await apiKeyModel.getAPIKey(apiKey);
 	if(result){
+		console.log(result);
 		req.user = {
 			apiKey: apiKey,
-			name: 'kittens'
+			id: result.user_id,
+			name: result.username
 		};
 	}else{
 		return send(res, 401, {

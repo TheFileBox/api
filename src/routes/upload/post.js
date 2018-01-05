@@ -8,6 +8,7 @@ const fileType = require('file-type');
 const crypto = require('crypto');
 
 const verifyApiKey = require('../../services/verifyApiKey');
+const fileModel = require('../../models/file');
 
 const UPLOAD_PATH = global.nconf.get('server:upload_path');
 const SERVER_DOMAIN = global.nconf.get('server:domain');
@@ -108,11 +109,16 @@ module.exports = compose(
 					await move(file, `${finalPath}/${hashedFileName}`);
 					output.statusCode = 200;
 					output.statusMessage = 'upload success';
+					await fileModel.insertFile({
+						...fileData,
+						name: file.name,
+						uploader_id: req.user.id
+					});
 				}else{
 					output.statusCode = 200;
 					output.statusMessage = 'file already uploaded';
 				}
-				output.shortlink = `https://${username}.${SERVER_DOMAIN}/${hashedFileName}`;
+				output.link = `https://${username}.${SERVER_DOMAIN}/${hashedFileName}`;
 			}
 			
 			send(res, output.statusCode, output);

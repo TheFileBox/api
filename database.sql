@@ -15,13 +15,41 @@ CREATE TABLE `api_keys` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE `files` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `hash` varchar(100) NOT NULL,
+  `ext` varchar(5) NOT NULL,
+  `mime` varchar(30) NOT NULL,
+  `uploader_id` int(11) NOT NULL,
+  `views` bigint(20) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `username` varchar(40) NOT NULL,
+  `password` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 ALTER TABLE `api_keys`
   ADD PRIMARY KEY (`id`);
 
+ALTER TABLE `files`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
 
 ALTER TABLE `api_keys`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

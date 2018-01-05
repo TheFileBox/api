@@ -57,6 +57,7 @@ const notfound = async (req, res) => {
 
 module.exports = router(
 	post('/upload', corsMiddleware(require('./routes/upload/post'))),
+	get('/serve/:username/:hash', corsMiddleware(require('./routes/serve/get'))),
 	get('/', corsMiddleware(require('./routes/index/get'))),
 	get('/*', corsMiddleware(notfound))
 );
