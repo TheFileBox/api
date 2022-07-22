@@ -21,7 +21,7 @@
     "micro-dev": "^2.1.1"
   },
   "dependencies": {
-    "file-type": "^7.4.0",
+    "file-type": "^16.5.4",
     "knex": "^0.14.2",
     "micro": "^9.0.2",
     "micro-cors": "^0.0.4",
