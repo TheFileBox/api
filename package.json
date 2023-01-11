@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "file-type": "^7.4.0",
-    "knex": "^0.14.2",
+    "knex": "^2.4.0",
     "micro": "^9.0.2",
     "micro-cors": "^0.0.4",
     "micro-hoofs": "^0.0.5",
